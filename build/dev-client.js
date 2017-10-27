@@ -1,7 +1,8 @@
 /* eslint-disable */
 'use strict'
 require('eventsource-polyfill')
-var hotClient = require('webpack-hot-middleware/client?noInfo=true&reload=true')
+// noInfo -->  {true} don't print HRM info to console
+var hotClient = require('webpack-hot-middleware/client?noInfo=false&reload=true')
 
 hotClient.subscribe(function (event) {
   if (event.action === 'reload') {
