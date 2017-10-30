@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import Home from '@/pages/Home'
 import System from '@/pages/system/Index'
+import Department from '@/pages/system/Department'
 
 Vue.use(Router)
 
@@ -29,6 +30,24 @@ const Services = resolve => {
   })
 }
 
+const User = resolve => {
+  import('@/pages/system/User').then(module => {
+    resolve(module)
+  })
+}
+
+const Menu = resolve => {
+  import('@/pages/system/Menu').then(module => {
+    resolve(module)
+  })
+}
+
+const Role = resolve => {
+  import('@/pages/system/Role').then(module => {
+    resolve(module)
+  })
+}
+
 export default new Router({
   routes: [{
     path: '/',
@@ -38,7 +57,20 @@ export default new Router({
     redirect: '/system-manager',
     children: [{
       path: 'system-manager',
-      component: System
+      component: System,
+      children: [{
+        path: 'department',
+        component: Department,
+      }, {
+        path: 'user',
+        component: User
+      }, {
+        path: 'menu',
+        component: Menu
+      }, {
+        path: 'role',
+        component: Role
+      }]
     }, {
       path: 'tags-manager',
       component: Tags
